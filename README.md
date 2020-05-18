@@ -88,7 +88,7 @@ Example Response:
 
 Error Handling
 --------------
-Violating the above contracts or server issues will yield JSON error responses. The application handles 4XX and 5XX error codes.
+Violating the above contracts or server side issues will yield JSON error responses. The application handles 4XX and 5XX error codes.
 
 - ***GET /user/{userName}*** - Username that does not exist.
 
