@@ -1,9 +1,9 @@
 About the User Service
 ============================================
 
-The User Service is a Java Spring Boot REST application for tracking users.
+The User Service is a simple Java Spring Boot REST application for tracking users.
 
-The application is designed to be very simple and light weight, runnable over a single jar. It utilizes a built-in embedded SQLite database for persistence of item information, storing data in-memory, which allows the project to be run without needing a separate database. The embedded Tomcat server is also built-in. Lastly, the application does not come packaged with a front end, so you may use your own if you wish. The application consumes and produces JSON over REST because this is easiest to read and process by front ends.
+The application is designed to be very simple and light weight, runnable over a single jar. It utilizes a built-in embedded SQLite database for persistence of item information, storing data in-memory, which allows the project to be run without needing a separate database. The embedded Tomcat server is also built-in. Lastly, the application does not come packaged with a front end, so you may use your own if you wish. The application consumes and produces JSON over REST.
 
 
 Getting Started
@@ -28,12 +28,12 @@ REST Endpoints
 
 To test the endpoints, you might decide to use tools like cURL, Swagger, Postman, Fiddler, etc.
 
-- ***GET /user/{userName}*** - Retrieves information about the user.
+- ***GET /user/{userName}*** - Retrieves information about the user of the given username. Username must exist.
 
 Example Request:
 	
-    curl --location --request GET 'http://localhost:8080/api/v1/user/jdoe' \
-    --header 'Content-Type: application/json'
+    	curl --location --request GET 'http://localhost:8080/api/v1/user/jdoe' \
+        --header 'Content-Type: application/json'
 		
 Example Response:
 
@@ -45,44 +45,46 @@ Example Response:
         }
     }
 
-- ***GET /item/{id}*** - Retrieves information about a specific item. Furthermore, the item is logged as viewed, which may potentially cause the price to surge 10%. Right now the IDs 1 or 2 are valid.
+- ***POST /user/{userName}*** - Creates a user with the given username with the given information. Username must not already be in use. Name and email cannot be empty.
 
 Example Request:
 
-	curl -X GET \
-	http://localhost:8080/item/1 \
-	-H 'Accept: application/json' \
-	-H 'Accept-Encoding: gzip, deflate' \
-	-H 'Authorization: Basic dXNlcjE6dXNlcjFQYXNz' \
-	-H 'Cache-Control: no-cache' \
-	-H 'Connection: keep-alive' \
-	-H 'Content-Type: application/json' \
-	-H 'Cookie: JSESSIONID=553F2D8F091CD62C86226C8712AF97E2' \
-	-H 'Host: localhost:8080' \
-	-H 'Postman-Token: 424e7f4d-01bd-4e7f-af4d-48139202d248,20ab6150-15c9-41b7-839d-b1d32024c589' \
-	-H 'User-Agent: PostmanRuntime/7.16.3' \
-	-H 'cache-control: no-cache'
+    	curl --location --request POST 'http://localhost:8080/api/v1/user/bvila' \
+	--header 'Content-Type: application/json' \
+	--header 'Content-Type: text/plain' \
+	--data-raw '{
+	    "name": "Bob Vila",
+	    "email": "bob.vila@gmail.com"
+	}'
 		
 Example Response:
 
-	{"id":1,"name":"Aged Brie","description":"Fancy lad stuff","price":10,"quantity":1}
+	{ "result": "User successfully created." }
 
-- ***POST /item/{id}*** - Purchases the item. Right now all that happens is the quantity count gets decremented. If not sold out, returns true. Otherwise false (IE you may not purchase more).
+- ***PUT /user/{userName}*** - Updates the user with the given username with the given information. User must exist. Name and email cannot be empty.
 
 Example Request:
 
-	curl -X POST \
-	http://localhost:8080/item/1 \
-	-H 'Accept: application/json' \
-	-H 'Authorization: Basic dXNlcjE6dXNlcjFQYXNz' \
-	-H 'Content-Type: application/json' \
-	-H 'Postman-Token: b5c65ed8-3f88-46fc-9f44-4efa1c4a4976' \
-	-H 'cache-control: no-cache'
+	curl --location --request PUT 'http://localhost:8080/api/v1/user/bvila' \
+	--header 'Content-Type: application/json' \
+	--header 'Content-Type: text/plain' \
+	--data-raw '{
+	    "name": "Bob Vila",
+	    "email": "bob.vila@gmail.com"
+	}'
 		
 Example Response:
 
-	{"result": true}
+	{ "result": "User successfully updated." }
 	
-The only header you strictly need is the 'Authorization' header, and you can copy and past it wholesale since the username and 
-password are constant.
+- ***DELETE /user/{userName}*** - Deletes user with the given username. Username must exist.
+
+Example Request:
+
+	curl --location --request DELETE 'http://localhost:8080/api/v1/user/bvila' \
+	--header 'Content-Type: application/json'
+		
+Example Response:
+
+	{ "result": "User successfully deleted." }
 
