@@ -25,6 +25,7 @@ public class UserDaoImpl implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    // Initializes the built-in SQLite database with arbitrary initial values, to simulate an actual database
     @Override
     public void initialize() {
         Session session = sessionFactory.openSession();
@@ -58,7 +59,7 @@ public class UserDaoImpl implements UserDAO {
 
         try {
             tx.commit();
-        } catch(PersistenceException e) {
+        } catch(PersistenceException e) { // Duplicate username
             tx.rollback();
             throw new BadRequestException("Duplicate username.");
         } finally {
@@ -75,7 +76,7 @@ public class UserDaoImpl implements UserDAO {
         session.close();
         try {
             return users.get(0);
-        } catch(IndexOutOfBoundsException e) {
+        } catch(IndexOutOfBoundsException e) { // Username not found
             throw new BadRequestException("Username not found.");
         }
     }
@@ -98,7 +99,7 @@ public class UserDaoImpl implements UserDAO {
             } else {
                 tx.commit();
             }
-        } catch(BadRequestException e) {
+        } catch(BadRequestException e) { // Username not found
             tx.rollback();
             throw e;
         } finally {
@@ -116,7 +117,7 @@ public class UserDaoImpl implements UserDAO {
         query.setString("userName", userName);
 
         try {
-            if (query.executeUpdate() == 0) {
+            if (query.executeUpdate() == 0) { // Username not found
                 throw new BadRequestException("Username not found.");
             } else {
                 tx.commit();

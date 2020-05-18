@@ -15,6 +15,7 @@ import java.util.Set;
 
 import com.userservice.error.BadRequestException;
 
+// This controller advice handles basic validations, such as ensuring fields are not empty
 @ControllerAdvice
 @Slf4j
 public class RequestBodyAdvice extends RequestBodyAdviceAdapter {
@@ -35,9 +36,11 @@ public class RequestBodyAdvice extends RequestBodyAdviceAdapter {
                                 Type targetType,
                                 Class<? extends HttpMessageConverter<?>> converterType) {
 
-        // JSR 380 validations, constraints are annotated in the Request Object
+        // Run the validations. Throw BadRequestException on failure.
         Set<ConstraintViolation<Object>> violations = validator.validate(requestBody);
         for (ConstraintViolation<Object> violation : violations) {
+            log.error("Type = com.userservice.error.BadRequestException");
+            log.error("Message = " + violation.getMessage());
             throw new BadRequestException(violation.getMessage());
         }
         return requestBody;

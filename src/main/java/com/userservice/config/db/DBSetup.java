@@ -12,6 +12,7 @@ public class DBSetup {
     @Autowired
     private UserService userService;
 
+    // Initializes the built-in SQLite database with arbitrary initial values, to simulate an actual persisted database
     @PostConstruct
     public void initialize() {
         userService.initialize();

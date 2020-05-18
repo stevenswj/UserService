@@ -5,6 +5,7 @@ import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.identity.IdentityColumnSupport;
 import org.springframework.stereotype.Component;
 
+// Customization needed to make SQLite work with Hibernate
 @Component
 public class SQLiteDialect extends Dialect {
 
