@@ -51,7 +51,6 @@ Example Request:
 
 	curl --location --request POST 'http://localhost:8080/api/v1/user/bvila' \
 	--header 'Content-Type: application/json' \
-	--header 'Content-Type: text/plain' \
 	--data-raw '{
 	    "name": "Bob Vila",
 	    "email": "bob.vila@gmail.com"
@@ -67,7 +66,6 @@ Example Request:
 
 	curl --location --request PUT 'http://localhost:8080/api/v1/user/jdoe' \
 	--header 'Content-Type: application/json' \
-	--header 'Content-Type: text/plain' \
 	--data-raw '{
 	    "name": "Johnny Doe",
 	    "email": "john.doe@hotmail.com"
