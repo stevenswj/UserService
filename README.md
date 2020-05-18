@@ -33,7 +33,7 @@ To test the endpoints, you might decide to use tools like cURL, Swagger, Postman
 Example Request:
 	
 	curl --location --request GET 'http://localhost:8080/api/v1/user/jdoe' \
-        --header 'Content-Type: application/json'
+	--header 'Content-Type: application/json'
 		
 Example Response:
 
@@ -88,3 +88,20 @@ Example Response:
 
 	{ "result": "User successfully deleted." }
 
+Error Handling
+--------------
+Violating the above contracts will yield JSON error responses. The application handles 400 and 500 error codes.
+
+- ***GET /user/{userName}*** - Username that does not exist.
+
+Example Request:
+	
+	curl --location --request GET 'http://localhost:8080/api/v1/user/jbond' \
+	--header 'Content-Type: application/json'
+		
+Example Response (400 Bad Request):
+
+	{
+	    "errorClass": "com.userservice.error.BadRequestException",
+	    "errorMessage": "Username not found."
+	}
