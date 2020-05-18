@@ -1,9 +1,9 @@
 About the User Service
 ============================================
 
-The User Service is a simple Java Spring Boot REST application for user management.
+The User Service is a simple Java Spring Boot REST application for user management, with Hibernate as the ORM.
 
-The application is designed to be very simple and light weight, runnable over a single jar. For demo purposes and simplicity, it utilizes a built-in embedded SQLite database for persistence of user information, storing data in-memory, which allows the project to be run without needing a separate database. The embedded Tomcat server is also built-in. Lastly, the application does not come packaged with a front end, so you may use your own if you wish. The application consumes and produces JSON over REST.
+The application is designed to be very simple and light weight, runnable over a single jar. For demo purposes and simplicity, it utilizes a built-in embedded SQLite database to simulate persistence of user information, storing data in-memory, which allows the project to be run without needing a separate database. The embedded Tomcat server is also built-in. Lastly, the application does not come packaged with a front end, so you may use your own if you wish. The application consumes and produces JSON over REST. There is also basic logging over SLF4J.
 
 
 Getting Started
@@ -88,7 +88,7 @@ Example Response:
 
 Error Handling
 --------------
-Violating the above contracts will yield JSON error responses. The application handles 400 and 500 error codes.
+Violating the above contracts will yield JSON error responses. The application handles 4XX and 5XX error codes.
 
 - ***GET /user/{userName}*** - Username that does not exist.
 
