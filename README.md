@@ -65,12 +65,12 @@ Example Response:
 
 Example Request:
 
-	curl --location --request PUT 'http://localhost:8080/api/v1/user/bvila' \
+	curl --location --request PUT 'http://localhost:8080/api/v1/user/jdoe' \
 	--header 'Content-Type: application/json' \
 	--header 'Content-Type: text/plain' \
 	--data-raw '{
-	    "name": "Bob Vila",
-	    "email": "bob.vila@gmail.com"
+	    "name": "Johnny Doe",
+	    "email": "john.doe@hotmail.com"
 	}'
 		
 Example Response:
@@ -81,7 +81,7 @@ Example Response:
 
 Example Request:
 
-	curl --location --request DELETE 'http://localhost:8080/api/v1/user/bvila' \
+	curl --location --request DELETE 'http://localhost:8080/api/v1/user/jdoe' \
 	--header 'Content-Type: application/json'
 		
 Example Response:
