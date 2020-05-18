@@ -93,8 +93,11 @@ public class UserDaoImpl implements UserDAO {
         query.setParameter("email", user.getEmail());
         query.setParameter("userName", user.getUserName());
         try {
-            if (query.executeUpdate() == 0)
+            if (query.executeUpdate() == 0) {
                 throw new BadRequestException("Username not found.");
+            } else {
+                tx.commit();
+            }
         } catch(BadRequestException e) {
             tx.rollback();
             throw e;
@@ -113,8 +116,11 @@ public class UserDaoImpl implements UserDAO {
         query.setString("userName", userName);
 
         try {
-            if (query.executeUpdate() == 0)
+            if (query.executeUpdate() == 0) {
                 throw new BadRequestException("Username not found.");
+            } else {
+                tx.commit();
+            }
         } catch(BadRequestException e) {
             tx.rollback();
             throw e;
