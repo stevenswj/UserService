@@ -7,10 +7,17 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/*
+ * Configuration for the Tomcat server
+ *
+ * @author Weston Stevens
+ */
 @Configuration
 public class AppConfig {
 
-    // Needed for the embedded Tomcat server
+    /*
+     * Needed for the embedded Tomcat server
+     */
     @Bean
     public EmbeddedServletContainerFactory embeddedServletContainerFactory() {
         return new TomcatEmbeddedServletContainerFactory() {

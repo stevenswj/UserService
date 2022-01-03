@@ -10,11 +10,21 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+/*
+ * JDBC and Hibernate configuration file. Properties are pulled from application.properties.
+ *
+ * @author Weston Stevens
+ */
 @Configuration
 public class DBConfig {
     @Autowired
     private Environment env;
 
+    /*
+     * Produces the JDBC data source bean object
+     *
+     * @return DataSource - The data source
+     */
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -23,6 +33,11 @@ public class DBConfig {
         return dataSource;
     }
 
+    /*
+     * Produces the Hibernate session factory bean object
+     *
+     * @return LocalSessionFactoryBean - The session factory bean
+     */
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

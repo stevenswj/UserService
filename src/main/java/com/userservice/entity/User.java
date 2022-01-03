@@ -10,6 +10,11 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+/*
+ * Maps to the 'users' table in the SQLite database.
+ *
+ * @author Weston Stevens
+ */
 @Getter
 @Setter
 @Entity
@@ -21,25 +26,47 @@ public class User implements Serializable {
 	@Id
 	private String userName;
 
+	// Name of the user, which cannot be null
 	@NotNull
 	private String name;
 
+	// User e-mail, which cannot be null
 	@NotNull
 	private String email;
 
+	/*
+	 * Empty constructor
+	 */
 	public User() {}
 
+	/*
+	 * Setter constructor
+	 *
+	 * @param userName - The user's username
+	 * @param name - The user's name
+	 * @param email - The user's e-mail address
+	 */
 	public User(String userName, String name, String email) {
 		this.userName = userName;
 		this.name = name;
 		this.email = email;
 	}
 
+	/*
+	 * Hashcode method
+	 *
+	 * @return int - The hashcode
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(this.getUserName());
 	}
 
+	/*
+	 * Equals method. Users are equal if they have the same username.
+	 *
+	 * @param o - The user being compared
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof User) {

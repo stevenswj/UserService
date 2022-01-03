@@ -15,13 +15,26 @@ import java.util.Set;
 
 import com.userservice.error.BadRequestException;
 
-// This controller advice handles basic validations, such as ensuring fields are not empty
+/*
+ * This controller advice handles basic validations, such as ensuring fields are not empty
+ *
+ * @author Weston Stevens
+ */
 @ControllerAdvice
 @Slf4j
 public class RequestBodyAdvice extends RequestBodyAdviceAdapter {
 
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
+    /*
+     * Invoked first to determine if this interceptor applies.
+     *
+     * @param methodParameter - The method parameter
+     * @param targetType - The target type, not necessarily the same as the method parameter type, e.g. for
+     *                     HttpEntity<String>.
+     * @param converterType - The selected converter type
+     * @return boolean - Whether this interceptor should be invoked or not.
+     */
     @Override
     public boolean supports(MethodParameter methodParameter,
                             Type targetType,
@@ -29,6 +42,20 @@ public class RequestBodyAdvice extends RequestBodyAdviceAdapter {
         return (methodParameter.getContainingClass() == UserController.class);
     }
 
+    /*
+     * Performs basic validations, throwing a BadRequestException if any fail, which will be handled by the
+     * UserServiceErrorAdvice class.
+     *
+     * Invoked third (and last) after the request body is converted to an Object.
+     *
+     * @param body - Set to the converter Object before the first advice is called
+     * @param inputMessage - The request
+     * @param parameter - The target method parameter
+     * @param targetType - The target type, not necessarily the same as the method parameter type, e.g. for
+     *                     HttpEntity<String>.
+     * @param converterType - The converter used to deserialize the body
+     * @return Object - The same body or a new instance
+     */
     @Override
     public Object afterBodyRead(Object requestBody,
                                 HttpInputMessage inputMessage,

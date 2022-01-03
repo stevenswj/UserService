@@ -1,14 +1,17 @@
 package com.userservice.dto;
 
-import org.springframework.http.HttpStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+/*
+ * Holds information used in healthy responses by the controllers, either user data or just status messages.
+ *
+ * @author Weston Stevens
+ */
 @Getter
 @Setter
 @AllArgsConstructor

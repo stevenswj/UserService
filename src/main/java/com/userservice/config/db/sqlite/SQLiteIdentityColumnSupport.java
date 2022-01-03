@@ -4,7 +4,11 @@ import org.hibernate.MappingException;
 import org.hibernate.dialect.identity.IdentityColumnSupportImpl;
 import org.springframework.stereotype.Component;
 
-// Customization needed to make SQLite work with Hibernate
+/*
+ * This class has customization needed to make SQLite work with Hibernate
+ *
+ * @author Weston Stevens
+ */
 @Component
 public class SQLiteIdentityColumnSupport extends IdentityColumnSupportImpl {
 

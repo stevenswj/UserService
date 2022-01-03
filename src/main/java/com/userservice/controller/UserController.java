@@ -18,7 +18,12 @@ import com.userservice.service.UserService;
 import com.userservice.dto.UserRequestBody;
 import com.userservice.dto.UserServiceResponse;
 
-// This controller handles the main API contracts of the service. It consumes/produces JSON and strictly follows CRUD.
+/*
+ * This controller handles the main API contracts of the service. It consumes/produces JSON and strictly follows CRUD
+ * regarding the users.
+ *
+ * @author Weston Stevens
+ */
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -30,20 +35,36 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	// Read user
+	/*
+	 * Retrieve user. Must already exist.
+	 *
+	 * @param userName - The user name of the user to be deleted.
+	 * @return UserServiceResponse - Information about the user.
+	 */
 	@GetMapping(path = "/{userName}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UserServiceResponse getUser(@PathVariable(value = "userName") String userName) {
 		return new UserServiceResponse(userService.getByUserName(userName));
 	}
 
-	// Delete user
+	/*
+	 * Delete user. Must already exist.
+	 *
+	 * @param userName - The user name of the user to be deleted.
+	 * @param UserServiceResponse - Request processed successfully
+	 */
 	@DeleteMapping(path = "/{userName}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public UserServiceResponse deleteUser(@PathVariable("userName") String userName) {
 		userService.deleteUser(userName);
 		return new UserServiceResponse("User successfully deleted.");
 	}
 
-	// Create user
+	/*
+	 * Create user. Must not already exist.
+	 *
+	 * @param userName - The user name of the user to be created.
+	 * @param UserServiceResponse - Request processed successfully
+	 * @param UserRequestBody - Information about the new user.
+	 */
 	@PostMapping(path = "/{userName}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserServiceResponse createUser(@PathVariable("userName") String userName,
@@ -52,7 +73,13 @@ public class UserController {
 		return new UserServiceResponse("User successfully created.");
 	}
 
-	// Update user
+	/*
+	 * Update user. Must already exist.
+	 *
+	 * @param userName - The user name of the user to be updated.
+	 * @param UserServiceResponse - Request processed successfully.
+	 * @param UserRequestBody - Information to be updated.
+	 */
 	@PutMapping(path = "/{userName}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public UserServiceResponse updateUser(@PathVariable("userName") String userName,
 			@RequestBody UserRequestBody request) {

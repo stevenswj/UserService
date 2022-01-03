@@ -5,7 +5,11 @@ import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.identity.IdentityColumnSupport;
 import org.springframework.stereotype.Component;
 
-// Customization needed to make SQLite work with Hibernate
+/*
+ * This class has customization needed to make SQLite work with Hibernate
+ *
+ * @author Weston Stevens
+ */
 @Component
 public class SQLiteDialect extends Dialect {
 
@@ -29,7 +33,6 @@ public class SQLiteDialect extends Dialect {
         registerColumnType(Types.BINARY, "blob");
         registerColumnType(Types.VARBINARY, "blob");
         registerColumnType(Types.LONGVARBINARY, "blob");
-        // registerColumnType(Types.NULL, "null");
         registerColumnType(Types.BLOB, "blob");
         registerColumnType(Types.CLOB, "clob");
         registerColumnType(Types.BOOLEAN, "integer");

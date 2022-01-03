@@ -7,6 +7,11 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+/*
+ * Holds information in the request body of POST and PUT requests. Also performs validations.
+ *
+ * @author Weston Stevens
+ */
 @Getter
 @Setter
 public class UserRequestBody implements Serializable {
