@@ -9,7 +9,7 @@ The application is designed to be very simple and light weight, runnable over a 
 Getting Started
 ==================
 
-The User Service runs on a jar called ***UserService-0.0.1-SNAPSHOT.jar***, which is in the repo. Simply run `java -jar UserService-0.0.1-SNAPSHOT.jar`. It should be available over the URL e.g. http://localhost:8080/api/v1/user/{userName}.
+The User Service runs on a jar called ***UserService-0.0.1-SNAPSHOT.jar***, which is in the repo. Simply run `java --add-opens java.base/java.lang=ALL-UNNAMED -jar UserService-0.0.1-SNAPSHOT.jar`. It should be available over the URL e.g. http://localhost:8080/api/v1/user/{userName}.
 
 Maven Commands
 --------------
